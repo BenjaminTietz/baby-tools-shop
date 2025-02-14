@@ -1,0 +1,64 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore compiled translation files
+*.mo
+
+# Ignore SQLite databases and SQL dump files
+*.db
+*.sql.gz
+
+# Ignore CSS source maps
+*.css.map
+
+# Ignore Python package metadata and build artifacts
+*.egg-info/
+dist/
+build/
+
+# Ignore IDE and editor configuration files
+.project
+.pydevproject
+.idea/
+.idea/workspace.xml
+.vscode/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore version control folders
+.git/
+.gitignore
+
+# Ignore temporary and log files
+*.log
+logs/
+.cache/
+
+# Ignore Node.js dependencies (if using frontend assets with npm/yarn)
+node_modules/
+
+# Ignore compiled frontend files and caches
+.sass-cache/
+web/static/CACHE/
+
+# Ignore virtual environments
+env/
+venv/
+
+# Ignore Vagrant files
+.vagrant/
+
+# Ignore media files (these should be handled separately)
+web/media/
+
+# Ignore specific Django settings for local development
+src/{{ project_name }}/settings/local.py
+
+# Ignore statistics and temporary analytics files
+stats/
+
+# Ignore Dockerfile to prevent it from being copied into the image
+Dockerfile
