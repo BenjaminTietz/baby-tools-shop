@@ -1,5 +1,2 @@
-#please fill in your Django secret Key
-SECRET_KEY='your_secret_key'
 #please fill in your local / hosted ip´s
 ALLOWED_HOSTS='["localhost", "127.0.0.1"]'
-
