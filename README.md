@@ -12,10 +12,7 @@ This project is a full-featured e-commerce web application built using Django an
 4. [Clone the Repository](#clone-the-repository)
 5. [Environment Configuration](#environment-configuration)
 6. [Run the Application with Docker](#run-the-application-with-docker)
-7. [Configure Nginx as Reverse Proxy](#configure-nginx-as-reverse-proxy)
-8. [Usage](#usage)
-9. [Screenshots](#screenshots)
-10. [License](#license)
+7. [Screenshots](#photos)
 
 ---
 
@@ -25,7 +22,7 @@ This Django-based webshop allows users to register, log in, browse products, app
 
 ---
 
-## Quickstart ⚡️
+## Quickstart
 
 1. **Install dependencies:**
    ```sh
@@ -99,7 +96,7 @@ This Django-based webshop allows users to register, log in, browse products, app
 
 ---
 
-## Requirements 📋
+## Requirements
 
 - A V-Server running Ubuntu/Debian
 - Docker & Docker Compose
@@ -114,7 +111,7 @@ sudo apt update && sudo apt install -y docker.io docker-compose nginx git
 
 ---
 
-## Clone the Repository 📝
+## Clone the Repository
 
 Navigate to your preferred directory and **clone the project**:
 
@@ -126,7 +123,7 @@ cd baby-tools-shop
 
 ---
 
-## Environment Configuration 🌱
+## Environment Configuration
 
 Create the `.env` file with necessary environment variables:
 
@@ -152,7 +149,7 @@ sudo chmod 644 .env
 
 ---
 
-## Run the Application with Docker 🛠️
+## Run the Application with Docker
 
 ### 1. Build the Docker Image
 
