@@ -14,11 +14,12 @@ This Django-based webshop allows users to register, log in, browse products, app
 
 1. [Introduction](#introduction)
 2. [Quickstart](#quickstart)
-3. [Requirements](#requirements)
-4. [Screenshots](#photos)
-5. [Contact](#contact)
-6. [Checklist](checklist.pdf)
-7. [Docker Cheat-Sheet](docker-cheatsheet.md)
+3. [Usage](#usage)
+4. [Requirements](#requirements)
+5. [Screenshots](#photos)
+6. [Contact](#contact)
+7. [Checklist](checklist.pdf)
+8. [Docker Cheat-Sheet](docker-cheatsheet.md)
 
 ## Quickstart
 
@@ -31,14 +32,12 @@ This Django-based webshop allows users to register, log in, browse products, app
    git clone -b development git@github.com:BenjaminTietz/baby-tools-shop.git
    cd baby-tools-shop
    ```
-3. **Create and configure the `.env` file:**
+3. **Generate and configure the .env file:** <br>
+   The environment file will be created automatically from env.template.
+   Adjust the values to match your setup:
    ```sh
-   touch .env
+   cp env.template .env
    nano .env
-   ```
-   Add the following content, replacing `<your-server-ip>` with your actual IP:
-   ```sh
-   ALLOWED_HOSTS=["localhost", "127.0.0.1", "<your-server-ip>"]
    ```
 4. **Build the Docker image:**
    ```sh
@@ -46,25 +45,80 @@ This Django-based webshop allows users to register, log in, browse products, app
    ```
 5. **Start the container:**
    ```sh
-   docker run -d -p 8025:8025 --name baby-tools-container baby-tools-shop
+   docker run -d -p 8025:8025 --env-file .env --name baby-tools-container baby-tools-shop
    ```
-6. **Apply database migrations manually (to ensure DB is ready):**
-   ```sh
-   docker exec -it baby-tools-container python manage.py migrate --noinput
-   ```
-7. **Create a superuser:**
-   ```sh
-   docker exec -it baby-tools-container python manage.py createsuperuser
-   ```
-   Follow the prompts to set up a username, email, and password.
-8. **Access the webshop:**
+6. **Access the webshop:**
    ```sh
    http://<your-server-ip>:8025/
    ```
-9. **Log in to the admin panel:**
+7. **Log in to the admin panel:**
    ```sh
    http://<your-server-ip>:8025/admin
    ```
+
+---
+
+## Usage
+
+### **Environment Variables**
+
+The application uses environment variables to configure certain aspects of the system. These can be set in the `.env` file:
+
+```sh
+ALLOWED_HOSTS=["localhost", "127.0.0.1", "<your-server-ip>"]
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=admin@example.com
+DJANGO_SUPERUSER_PASSWORD=adminpassword
+```
+
+### **Managing the Database**
+
+Run migrations manually inside the container if needed:
+
+```sh
+docker exec -it baby-tools-container python manage.py migrate
+```
+
+To create a new Django superuser manually:
+
+```sh
+docker exec -it baby-tools-container python manage.py createsuperuser
+```
+
+### **Collecting Static Files**
+
+If you update static files and need to collect them again, run:
+
+```sh
+docker exec -it baby-tools-container python manage.py collectstatic --noinput
+```
+
+### **Stopping and Restarting the Container**
+
+To stop the container:
+
+```sh
+docker stop baby-tools-container
+```
+
+To restart it:
+
+```sh
+docker start baby-tools-container
+```
+
+To remove the container completely:
+
+```sh
+docker rm baby-tools-container
+```
+
+To rebuild and restart:
+
+```sh
+docker build -t baby-tools-shop .
+docker run -d -p 8025:8025 --env-file .env --name baby-tools-container baby-tools-shop
+```
 
 ---
 
@@ -77,7 +131,7 @@ This Django-based webshop allows users to register, log in, browse products, app
 Ensure your system is up to date:
 
 ```sh
-sudo apt update && sudo apt install -y docker.io docker-compose nginx git
+sudo apt update && sudo apt install -y docker.io docker-compose git
 ```
 
 ---
