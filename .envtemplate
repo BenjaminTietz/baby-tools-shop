@@ -1,6 +1,6 @@
 # Please fill in your local / hosted ip´s
 
-ALLOWED_HOSTS=["localhost", "127.0.0.1", "188.245.245.201"]
+ALLOWED_HOSTS=["localhost", "127.0.0.1"]
 
 # Django Debug Mode (Will be overridden in production)
 

@@ -36,7 +36,7 @@ This Django-based webshop allows users to register, log in, browse products, app
    The environment file will be created automatically from env.template.
    Adjust the values to match your setup:
    ```sh
-   cp env.template .env
+   cp .envtemplate .env
    nano .env
    ```
 4. **Build the Docker image:**
