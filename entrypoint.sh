@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Ensuring staticfiles directory exists..."
+mkdir -p /app/staticfiles
+
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
