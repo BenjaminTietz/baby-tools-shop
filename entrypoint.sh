@@ -1,9 +1,5 @@
 #!/bin/sh
-
-echo "Ensuring staticfiles directory exists..."
-mkdir -p /app/static /app/staticfiles
-
-echo "Collecting static files..."
+echo "Collecting admin static files..."
 python manage.py collectstatic --noinput --verbosity 3
 
 echo "Setting production mode..."
