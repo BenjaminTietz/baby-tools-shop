@@ -18,7 +18,7 @@ This Django-based webshop allows users to register, log in, browse products, app
 4. [Requirements](#requirements)
 5. [Screenshots](#photos)
 6. [Contact](#contact)
-7. [Checklist](checklist.pdf)
+7. [Checklist](checklist_update.pdf)
 8. [Docker Cheat-Sheet](docker-cheatsheet.md)
 
 ## Quickstart
