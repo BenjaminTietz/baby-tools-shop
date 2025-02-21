@@ -14,13 +14,12 @@ RUN python -m pip install --no-cache-dir --upgrade pip && \
 # Copy the entire project into the container
 COPY babyshop_app /app/
 
-# Collect static files for production
-RUN python manage.py collectstatic --noinput
+# Copy entrypoint script and set permissions
+COPY ./entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 # Expose port 8025 so the application can be accessed externally
 EXPOSE 8025
 
-# This is the command that will be executed on container launch
-ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8025"]
-
-
+# Use entrypoint.sh as the startup command
+ENTRYPOINT ["/app/entrypoint.sh"]
