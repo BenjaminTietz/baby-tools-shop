@@ -66,6 +66,8 @@ The application uses environment variables to configure certain aspects of the s
 
 ```sh
 ALLOWED_HOSTS=["localhost", "127.0.0.1", "<your-server-ip>"]
+DEBUG=True
+DJANGO_PRODUCTION=False
 DJANGO_SUPERUSER_USERNAME=admin
 DJANGO_SUPERUSER_EMAIL=admin@example.com
 DJANGO_SUPERUSER_PASSWORD=adminpassword
