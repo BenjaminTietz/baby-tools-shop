@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 import json
+import ast
 
 #Load .env 
 load_dotenv()
@@ -32,7 +33,15 @@ SECRET_KEY = 'django-insecure-7j(@z8g0qc0hsl3wiqp55_ult3k3g&lh17@643@*g_q=sikrxr
 DEBUG = False
 
 # extract ALLOWED_HOSTS from .env and convert it into a list
-ALLOWED_HOSTS = json.loads(os.getenv('ALLOWED_HOSTS', '["localhost", "127.0.0.1"]'))
+allowed_hosts_env = os.getenv("ALLOWED_HOSTS")
+
+if not allowed_hosts_env or allowed_hosts_env in ["", "''", '""', "None"]:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+else:
+    try:
+        ALLOWED_HOSTS = ast.literal_eval(allowed_hosts_env)
+    except (SyntaxError, ValueError):
+        ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
