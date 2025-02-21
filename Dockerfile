@@ -2,20 +2,17 @@
 FROM python:3.11-alpine
 
 # Set the working directory inside the container
-WORKDIR /baby-tools-shop/babyshop_app/
+WORKDIR /app
 
 # Copy dependency file into the container
-COPY /requirements.txt ./
+COPY requirements.txt .
 
 # Install dependencies
-RUN python -m pip install --upgrade pip
-RUN python -m pip install -r requirements.txt
+RUN python -m pip install --no-cache-dir --upgrade pip && \
+    python -m pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project into the container
-COPY . /baby-tools-shop/
-
-# Apply database migrations
-RUN python manage.py makemigrations && python manage.py migrate
+COPY babyshop_app /app/
 
 # Collect static files for production
 RUN python manage.py collectstatic --noinput
