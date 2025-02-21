@@ -12,12 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-import json
 import ast
-
-#Load .env 
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,21 +24,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-7j(@z8g0qc0hsl3wiqp55_ult3k3g&lh17@643@*g_q=sikrxr'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# Set DEBUG mode based on environment variables
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-# extract ALLOWED_HOSTS from .env and convert it into a list
-allowed_hosts_env = os.getenv("ALLOWED_HOSTS")
+# Once collectstatic is run, we assume we are in production
+if os.environ.get("DJANGO_PRODUCTION", "False") == "True":
+    DEBUG = False
 
-if not allowed_hosts_env or allowed_hosts_env in ["", "''", '""', "None"]:
+# Extract ALLOWED_HOSTS from environment variables
+allowed_hosts_env = os.environ.get("ALLOWED_HOSTS", "")
+
+if not allowed_hosts_env:
     ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 else:
     try:
         ALLOWED_HOSTS = ast.literal_eval(allowed_hosts_env)
     except (SyntaxError, ValueError):
         ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-
-
+         
 # Application definition
 
 INSTALLED_APPS = [
@@ -134,6 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -144,4 +143,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
