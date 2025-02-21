@@ -1,6 +1,6 @@
 # Django E-Commerce Webshop 🏍️
 
-This project is a full-featured e-commerce web application built using Django and deployed with Docker and Nginx on a V-Server.
+This project is a full-featured e-commerce web application built using Django and deployed with Docker a V-Server.
 
 ---
 
