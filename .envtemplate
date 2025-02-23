@@ -1,0 +1,17 @@
+# Please fill in your local / hosted ip´s
+
+ALLOWED_HOSTS=["localhost", "127.0.0.1"]
+
+# Django Debug Mode (Will be overridden in production)
+
+DEBUG=True
+
+# Django Production Mode (Set to True in entrypoint.sh after collectstatic)
+
+DJANGO_PRODUCTION=False
+
+# Django Superuser Credentials (automated creation)
+
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=admin@example.com
+DJANGO_SUPERUSER_PASSWORD=adminpassword
